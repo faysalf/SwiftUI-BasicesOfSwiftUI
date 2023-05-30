@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var selectedDate: Date = Date()
+    @State private var selectedDate: Date = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
     @State private var previousDate: Date = Date()
     
     var body: some View {
@@ -24,7 +24,7 @@ struct ContentView: View {
                 DatePicker(
                     "Select event date",
                     selection: $selectedDate,
-                    in: (Date().addingTimeInterval(1))...Date().advanced(by: 6 * 24 * 60 * 60),
+                    in: (Calendar.current.date(byAdding: .day, value: -1, to: Date())!)...Date().advanced(by: 6 * 24 * 60 * 60),
                     displayedComponents: .date
                 )
                 .datePickerStyle(GraphicalDatePickerStyle())
